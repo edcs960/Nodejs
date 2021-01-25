@@ -35,7 +35,7 @@ http.createServer((req,res) => {
              'Set-Cookie': `session=${randomInt}; Expires=${expires.toGMTString()}; HttpOnly; Path=/`,
          });
          res.end();
-     } else if(cookies.session && session[cookies.session.expires > new Date()){
+     } else if(cookies.session && session[cookies.session.expires] > new Date()){
          res.writeHead(200, {'Content-Type':'text/html; charset=utf-8'});
          res.end(`${session[cookies.session].name}님 안녕하세요`);
      } else{
@@ -48,4 +48,4 @@ http.createServer((req,res) => {
      }
 }).listen(8084,()=>{
     console.log('8084번 포트에서 서버 대기 중입니다.');
-})
+});
